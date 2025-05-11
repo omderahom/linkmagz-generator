@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Generator Kode HTML Produk LinkMagz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #fff; color: #333; }
+    .section { margin-bottom: 20px; }
+    .section label { display: block; margin-bottom: 5px; font-weight: bold; }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .output textarea {
+      width: 100%;
+      height: 200px;
+      font-family: monospace;
+    }
+    .tombol-order {
+      display: inline-block;
+      margin-top: 10px;
+      background: #e67e22;
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Generator Kode HTML Produk LinkMagz</h1>
+
+  <div class="section">
+    <label>URL Gambar Produk</label>
+    <div id="gambar-container">
+      <input type="url" placeholder="https://..." class="gambar-url" />
+    </div>
+    <button type="button" onclick="tambahGambar()">+ Tambah Gambar</button>
+  </div>
+
+  <div class="section">
+    <label>Harga Normal</label>
+    <input type="number" id="harga" placeholder="contoh: 150000" />
+  </div>
+
+  <div class="section">
+    <label><input type="checkbox" id="hargaPromoToggle" /> Gunakan Harga Promo</label>
+    <input type="number" id="hargaPromo" placeholder="contoh: 120000" style="display:none;" />
+  </div>
+
+  <div class="section">
+    <label>Status Produk / Jasa</label>
+    <input type="text" id="status" placeholder="Contoh: Stok Terbatas" />
+  </div>
+
+  <div class="section">
+    <label>Deskripsi Produk / Jasa</label>
+    <textarea id="deskripsi" rows="5"></textarea>
+    <label><input type="checkbox" id="tagbr" checked /> Baris baru otomatis menjadi &lt;br/&gt;</label>
+  </div>
+
+  <div class="section">
+    <label><input type="checkbox" id="useCustomLink" /> Gunakan Link Order Khusus</label>
+    <input type="url" id="customOrderLink" placeholder="https://..." style="display:none;" />
+  </div>
+
+  <div class="section">
+    <button onclick="generate()">Buat Kode</button>
+  </div>
+
+  <div class="section output">
+    <label>KODE HTML:</label>
+    <textarea id="output" onclick="this.select()" readonly></textarea>
+  </div>
+
+<script>
+  document.getElementById("hargaPromoToggle").addEventListener("change", function () {
+    document.getElementById("hargaPromo").style.display = this.checked ? "block" : "none";
+  });
+
+  document.getElementById("useCustomLink").addEventListener("change", function () {
+    document.getElementById("customOrderLink").style.display = this.checked ? "block" : "none";
+  });
+
+  function tambahGambar() {
+    const container = document.getElementById("gambar-container");
+    const input = document.createElement("input");
+    input.type = "url";
+    input.placeholder = "https://...";
+    input.className = "gambar-url";
+    container.appendChild(input);
+  }
+
+  function toRupiah(n) {
+    return Number(n).toLocaleString('id-ID', {
+      style: 'currency', currency: 'IDR', maximumFractionDigits: 0
+    });
+  }
+
+  function generate() {
+    const gambarEls = document.querySelectorAll(".gambar-url");
+    let gambarHTML = "";
+    gambarEls.forEach((input, i) => {
+      if (input.value.trim()) {
+        gambarHTML += `<img src="${input.value.trim()}" alt="Gambar ${i+1}" />\\n`;
+      }
+    });
+
+    const harga = document.getElementById("harga").value;
+    const promo = document.getElementById("hargaPromo").value;
+    const status = document.getElementById("status").value;
+    let deskripsi = document.getElementById("deskripsi").value;
+    const useBR = document.getElementById("tagbr").checked;
+    const useCustom = document.getElementById("useCustomLink").checked;
+    const customLink = document.getElementById("customOrderLink").value.trim();
+
+    if (useBR) {
+      deskripsi = deskripsi.replace(/\\n/g, "<br/>");
+    }
+
+    const hargaHTML = promo
+      ? `<b class='harga-produk-coret'>${toRupiah(harga)}</b><b class='harga-produk'>${toRupiah(promo)}</b>`
+      : `<b class='harga-produk'>${toRupiah(harga)}</b>`;
+
+    const orderLink = useCustom && customLink ? customLink : "#";
+
+    const hasil = `
+<div class="gambar-produk">
+  <div class="gambar-slider">
+    ${gambarHTML}
+  </div>
+</div>
+
+<div class="keterangan-produk">
+  ${hargaHTML}<br/>
+  <b class="info-produk">${status}</b>
+</div>
+
+<div class="produk-deskripsi">
+  ${deskripsi}
+</div>
+
+<a href="${orderLink}" target="_blank" class="tombol-order">Order Sekarang</a>
+`;
+
+    document.getElementById("output").value = hasil.trim();
+  }
+</script>
+
+</body>
+</html>
