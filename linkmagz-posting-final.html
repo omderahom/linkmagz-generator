@@ -1,17 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Generator Kode HTML Produk LinkMagz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #fff; color: #333; }
+    .section { margin-bottom: 20px; }
+    .section label { display: block; margin-bottom: 5px; font-weight: bold; }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .output textarea {
+      width: 100%;
+      height: 200px;
+      font-family: monospace;
+    }
+    .tombol-order {
+      display: inline-block;
+      margin-top: 10px;
+      background: #e67e22;
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
 
-<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="icon" sizes="192x192" type="image/x-icon" href="images/sugeng-id-favicon-75x75.png"><link rel="icon" sizes="32x32" type="image/x-icon" href="images/sugeng-id-favicon.png"><title>Generator Kode HTML Postingan Produk / Jasa Template LinkMagz</title><meta name="description" content="Generator Kode HTML Postingan Produk / Jasa Template Blogger Premium LinkMagz dari Sugeng.id"><link rel="stylesheet" href="style.css?ver=4.9.42"></head><body><script>function darkModeButton(){let e=document.getElementById("darkmode-button").querySelector(".darkmode");"darkmode"===localStorage.getItem("stylemode")?e.checked=!0:e.checked=!1,e.addEventListener("change",function(){"darkmode"===localStorage.getItem("stylemode")?(localStorage.setItem("stylemode","lightmode"),document.documentElement.removeAttribute("data-theme","dark")):(localStorage.setItem("stylemode","darkmode"),document.documentElement.setAttribute("data-theme","dark"))})}!function(){var e=window.matchMedia("(prefers-color-scheme: dark)").matches,t="darkmode"===localStorage.getItem("stylemode"),o="lightmode"===localStorage.getItem("stylemode");!e&&!t||o?(localStorage.setItem("stylemode","lightmode"),document.documentElement.removeAttribute("data-theme","dark")):(localStorage.setItem("stylemode","darkmode"),document.documentElement.setAttribute("data-theme","dark"))}(),document.addEventListener("DOMContentLoaded",darkModeButton);</script><header id="header"><div id="header-logo"><a href="/"><img alt="Sugeng.id" title="Template Blogger" src="images/sugeng.id-2024.png" width="120" height="40"></a></div></header><main id="wrapper" class="linkmagz-posting"><h1 class="title">Generator Kode HTML Postingan Produk / Jasa Template LinkMagz</h1><span class="toggle-title">Keterangan</span> <a class="toggle-btn-content" href="#"></a><div class="toggle-content hidden"><div>Untuk mendapatkan URL gambar produk, gunakan cara ini :<br><a target="_blank" href="https://sugeng.id/panduan/cara-upload-gambar-di-blogger/">Cara Upload Gambar di Blogger</a><br><br>Klik "<em>+ tambah gambar</em>" jika ingin menggunakan lebih dari 1 gambar. Rekomendasi jangan gunakan lebih dari 3 gambar.<br><br>Jika gambar produk terlalu banyak akan memperlambat loading dan menyebabkan tampilan halaman depan error (<a target="_blank" href="https://sugeng.id/blogger/error-yang-sering-terjadi-di-blogger/#Jumlah_postingan_di_homepage_tidak_sesuai_setelan">baca penjelasan</a>).</div></div><div class="section"><label for="url-gambar">URL Gambar Produk / Jasa</label><div id="url-gambar-input"><div class="new-input"><input type="url" id="url-gambar" placeholder="https://..."></div></div><button id="add-image-url" class="addfield">tambah gambar</button></div><div class="section"><label class="input-section-lable" for="harga">Harga Normal</label><br><input type="number" id="harga" placeholder="contoh: 150000"></div><div class="section has-input-toggle"><input type="checkbox" name="harga-promo" id="harga-promo" class="harga-promo input-toggle"> <label class="input-section-lable" for="harga-promo">Harga Promo</label><div class="input hidden"><input type="number" id="hargapromo" placeholder="contoh: 120000"></div></div><div class="section"><label class="input-section-lable" for="statusproduk">Status Produk / Jasa<br></label><br><input type="text" id="statusproduk" class="text-medium" placeholder="Contoh: Stok Terbatas"></div><div class="section"><label class="input-section-lable" for="deskripsi">Deskripsi Produk / Jasa</label><br><textarea class="content-medium" id="deskripsi" placeholder="Deskripsi produk/jasa bisa pakai kode HTML"></textarea><br><input checked="checked" name="tagbr" id="tagbr" type="checkbox" class="small-checkbox"> <label class="checkmark" for="tagbr">Baris baru otomatis menjadi tag <strong>&lt;br/&gt;</strong></label></div>
-<div class="section">
-  <label><input type="checkbox" id="useCustomLink"> Gunakan Link Order Khusus</label>
-  <input type="url" id="customOrderLink" placeholder="Masukkan Link Order Manual" style="display:none; width:100%; margin-top:5px;" />
+  <h1>Generator Kode HTML Produk LinkMagz</h1>
+
+  <div class="section">
+    <label>URL Gambar Produk</label>
+    <div id="gambar-container">
+      <input type="url" placeholder="https://..." class="gambar-url" />
+    </div>
+    <button type="button" onclick="tambahGambar()">+ Tambah Gambar</button>
+  </div>
+
+  <div class="section">
+    <label>Harga Normal</label>
+    <input type="number" id="harga" placeholder="contoh: 150000" />
+  </div>
+
+  <div class="section">
+    <label><input type="checkbox" id="hargaPromoToggle" /> Gunakan Harga Promo</label>
+    <input type="number" id="hargaPromo" placeholder="contoh: 120000" style="display:none;" />
+  </div>
+
+  <div class="section">
+    <label>Status Produk / Jasa</label>
+    <input type="text" id="status" placeholder="Contoh: Stok Terbatas" />
+  </div>
+
+  <div class="section">
+    <label>Deskripsi Produk / Jasa</label>
+    <textarea id="deskripsi" rows="5"></textarea>
+    <label><input type="checkbox" id="tagbr" checked /> Baris baru otomatis menjadi &lt;br/&gt;</label>
+  </div>
+
+  <div class="section">
+    <label><input type="checkbox" id="useCustomLink" /> Gunakan Link Order Khusus</label>
+    <input type="url" id="customOrderLink" placeholder="https://..." style="display:none;" />
+  </div>
+
+  <div class="section">
+    <button onclick="generate()">Buat Kode</button>
+  </div>
+
+  <div class="section output">
+    <label>KODE HTML:</label>
+    <textarea id="output" onclick="this.select()" readonly></textarea>
+  </div>
+
+<script>
+  document.getElementById("hargaPromoToggle").addEventListener("change", function () {
+    document.getElementById("hargaPromo").style.display = this.checked ? "block" : "none";
+  });
+
+  document.getElementById("useCustomLink").addEventListener("change", function () {
+    document.getElementById("customOrderLink").style.display = this.checked ? "block" : "none";
+  });
+
+  function tambahGambar() {
+    const container = document.getElementById("gambar-container");
+    const input = document.createElement("input");
+    input.type = "url";
+    input.placeholder = "https://...";
+    input.className = "gambar-url";
+    container.appendChild(input);
+  }
+
+  function toRupiah(n) {
+    return Number(n).toLocaleString('id-ID', {
+      style: 'currency', currency: 'IDR', maximumFractionDigits: 0
+    });
+  }
+
+  function generate() {
+    const gambarEls = document.querySelectorAll(".gambar-url");
+    let gambarHTML = "";
+    gambarEls.forEach((input, i) => {
+      if (input.value.trim()) {
+        gambarHTML += `<img src="${input.value.trim()}" alt="Gambar ${i+1}" />\\n`;
+      }
+    });
+
+    const harga = document.getElementById("harga").value;
+    const promo = document.getElementById("hargaPromo").value;
+    const status = document.getElementById("status").value;
+    let deskripsi = document.getElementById("deskripsi").value;
+    const useBR = document.getElementById("tagbr").checked;
+    const useCustom = document.getElementById("useCustomLink").checked;
+    const customLink = document.getElementById("customOrderLink").value.trim();
+
+    if (useBR) {
+      deskripsi = deskripsi.replace(/\\n/g, "<br/>");
+    }
+
+    const hargaHTML = promo
+      ? `<b class='harga-produk-coret'>${toRupiah(harga)}</b><b class='harga-produk'>${toRupiah(promo)}</b>`
+      : `<b class='harga-produk'>${toRupiah(harga)}</b>`;
+
+    const orderLink = useCustom && customLink ? customLink : "#";
+
+    const hasil = `
+<div class="gambar-produk">
+  <div class="gambar-slider">
+    ${gambarHTML}
+  </div>
 </div>
 
-<div class="section"><button type="button" id="submit" class="primary-button submit"><span>Buat Kode</span></button> <span class="error-box"></span></div><div class="section html-output"><label class="output-code-title" for="output-code">KODE POSTINGAN</label> <textarea id="output-code" onclick="this.select();"></textarea></div><span class="toggle-title">Cara Pemasangan Kode</span> <a class="toggle-btn-content" href="#"></a><div class="toggle-content hidden" style="margin-bottom:0"><div><ol><li>Salin kode postingan di atas</li><li>Buat postingan baru menggunakan mode HTML</li><li>Letakkan kodenya di bagian Konten</li><li>Jangan lupa postingannya diberi label Produk atau Jasa.</li></ol></div></div></main><footer id="footer"><div id="darkmode-button"><label class="darkmode-label"><input name="darkmode" id="darkmode" class="darkmode" type="checkbox"> <span>Darkmode</span></label></div><div id="footer-info"><span>Powered by <a href="https://sugeng.id" title="Template Blogger Premium" target="_blank">Sugeng.id</a></span><br><span class="version">v.4.9.42 2024</span></div></footer><script>!function(){var e=document.querySelectorAll(".toggle-content");Array.from(e).forEach(function(e){let t=e.previousElementSibling;e.classList.contains("hidden")?(t.innerHTML="(lihat)",e.style.height="0px"):(t.innerHTML="(tutup)",e.style.height=e.scrollHeight+"px")})}(),document.addEventListener("click",function(e){let t,n=e.target;n.classList.contains("toggle-btn-content")&&(t=n.nextElementSibling,e.preventDefault(),t.classList.contains("hidden")?(n.innerHTML="(tutup)",t.classList.remove("hidden"),t.style.height=t.scrollHeight+"px"):(n.innerHTML="(lihat)",t.classList.add("hidden"),t.style.height="0px"))}),window.addEventListener("resize",function(){var e=document.querySelectorAll(".toggle-content");Array.from(e).forEach(function(e){e.classList.contains("hidden")||(e.previousElementSibling.innerHTML="(lihat)",e.classList.add("hidden"),e.style.height="0px")})}),function(){let e=document.querySelector(".html-output");if(e&&navigator.clipboard){let n=document.createElement("button"),l=document.createElement("span");var t=document.createTextNode(" Salin");n.classList.add("copy-btn"),l.classList.add("icon-copy"),n.setAttribute("aria-label","copy-btn"),n.appendChild(l),n.appendChild(t),e.appendChild(n),n.addEventListener("click",function(){let t=e.querySelector("textarea");navigator.clipboard.writeText(t.value),this.classList.add("copied"),t.select(),setTimeout(()=>{this.classList.remove("copied")},1500)})}}();const messages={invalidURL:"<p>URL tidak valid: harus pakai https://</p>",checkBoxSosmed:"<p>Silakan pilih Sosial Media</p>"},helperFn={checkURL:e=>/^(http(s)?:\/\/)/g.test(e),getVal:e=>"checkbox"===(e=document.querySelector(e)).getAttribute("type")?e.checked:e.value,getValRadio(e){let t;return e=document.querySelectorAll(e),Array.from(e).forEach(function(e){e.checked&&(t=e.value)}),t},setKeyValArr(e,t){t=document.querySelectorAll(t);let n="\t"+e+": [\n";return Array.from(t).forEach(function(e){""!=e.value&&(n+='\t\t"'+e.value+'",\n')}),n+="\t],\n"},setKeyVal(e,t){let n="\t"+e+" : ";return"boolean"==typeof(t=this.getVal(t))?n+=t+",\n":"string"==typeof t&&(n+='"'+t.replace(/\"/g,"'")+'",\n'),n},lineToBr:(e,t)=>document.getElementById(t).checked?e.replace(/(?:\r\n|\r|\n)/g,"<br/>\n"):e,setAttributes(e,t){for(var n in t)e.setAttribute(n,t[n])},inputToggle(e){if(e.target.classList.contains("input-toggle")){let t=e.target.parentElement.lastElementChild;!0===e.target.checked?(t.style.height=t.scrollHeight+"px",t.classList.remove("hidden")):(t.firstChild.value="",t.style.height=null,t.classList.add("hidden"))}},addInput({parent:e,elm:t,placeholder:n,type:l,name:r,max:i}){i=i||6;let a=document.createElement("div");a.setAttribute("class","new-input");let s=document.createElement("input");s.setAttribute("type",l),s.setAttribute("placeholder",n),s.setAttribute("name",r);let c=document.createElement("button");c.setAttribute("class","remove"),c.setAttribute("type","button"),a.appendChild(s),a.appendChild(c),t.appendChild(a),t.childNodes.length>=i&&(t.nextElementSibling.disabled=!0,t.nextElementSibling.style.cssText="opacity:.3;cursor:not-allowed"),e.style.height=e.scrollHeight+"px"},removeInput({elm:e,target:t,max:n}){if(n=n||6,"remove"===t.className){--n;let r=t.parentElement.parentNode;var l=t.parentElement.getBoundingClientRect().height;t.parentElement.remove(),e.style.height=e.getBoundingClientRect().height-l+"px",r.childNodes.length<=n&&(r.nextElementSibling.disabled=!1,r.nextElementSibling.style.cssText="opacity:1;cursor:pointer;")}}};!function(e){let t=e.getElementById("output-code"),n=e.getElementById("submit"),l=e.getElementById("add-image-url"),r=e.getElementById("url-gambar-input"),i=e.querySelector(".error-box");var a;function s(e){return Number(e).toLocaleString("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0})}a="#url-gambar-input",(a=e.querySelector(a)).style.height=a.scrollHeight+"px",e.addEventListener("click",helperFn.inputToggle),
+<div class="keterangan-produk">
+  ${hargaHTML}<br/>
+  <b class="info-produk">${status}</b>
+</div>
 
-// Tampilkan input link manual saat checkbox diaktifkan
-document.getElementById('useCustomLink').addEventListener('change', function () {
-  const input = document.getElementById('customOrderLink');
-  input.style.display = this.checked ? 'block' : 'none';
-});
-l.addEventListener("click",function(){helperFn.addInput({parent:this.previousElementSibling,elm:this.previousElementSibling,placeholder:"https://...",type:"url",name:"url-gambar",max:5})}),r.addEventListener("click",function(e){helperFn.removeInput({elm:this,target:e.target,max:5})}),n.addEventListener("click",function(){let n=[];var l=e.querySelectorAll("#url-gambar-input input"),r=helperFn.getVal("#harga").replace(/\D/g,""),a=helperFn.getVal("#hargapromo").replace(/\D/g,""),c=helperFn.getVal("#statusproduk"),o=helperFn.getVal("#deskripsi");r=""==a?'\t<b class="harga-produk">'+s(r)+"</b>":'\t<b class="harga-produk-coret">'+s(r)+'</b><b class="harga-produk">'+s(a)+"</b>",a="";if(Array.from(l).forEach(function(e){helperFn.checkURL(e.value)?e.classList.remove("error"):(n.push("Error"),e.classList.add("error"))}),0<n.length)return i.innerHTML=messages.invalidURL,void(t.value="");i.innerHTML="",a+='<div class="gambar-produk">\n\t<div class="gambar-slider">',a+=function(e){let t="";for(let l=0;l<e.length;l++){var n=e[l].value;""!=n&&(t+='\n\t<img alt="Gambar Produk '+(l+1)+'" src="'+encodeURI(n)+'"/>')}return t}(l),a+="\n\t</div>\n</div>\n",a+='<div class="keterangan-produk">\n',a+=r+"\n",a+='\t<b class="info-produk">'+c+"</b>\n",a+="</div>\n",a+='<div class="produk-deskripsi">\n'+helperFn.lineToBr(o,"tagbr")+"\n</div>",a += `
-<a href="' + document.getElementById('useCustomLink').checked && document.getElementById('customOrderLink').value.trim() !== '' ? document.getElementById('customOrderLink').value : '#' + '" target="_blank" class="tombol-order">Order Sekarang</a>`;
-t.value=a}),e.addEventListener("focusin",function(e){e.target.classList.contains("error")&&e.target.classList.remove("error")})}(document);</script></body></html>
+<div class="produk-deskripsi">
+  ${deskripsi}
+</div>
+
+<a href="${orderLink}" target="_blank" class="tombol-order">Order Sekarang</a>
+`;
+
+    document.getElementById("output").value = hasil.trim();
+  }
+</script>
+
+</body>
+</html>
